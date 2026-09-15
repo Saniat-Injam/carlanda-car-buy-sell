@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:developer';
 import 'package:carlanda_car_buy_sell/core/services/auth_service.dart';
-import 'package:carlanda_car_buy_sell/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -56,6 +55,7 @@ class OtpController extends GetxController {
   void setOtp(String value) {
     otp.value = value;
   }
+
   var userId = "".obs;
   final userIdTEController = TextEditingController();
   final otpTEController = TextEditingController();
@@ -194,7 +194,9 @@ class OtpController extends GetxController {
         log(' OTP: ${response.errorMessage}');
         AppSnackBar.showError("OTP Expired. Please try again.");
       } else {
-        AppSnackBar.showError(response.errorMessage ?? 'Unknown error occurred.');
+        AppSnackBar.showError(
+          response.errorMessage ?? 'Unknown error occurred.',
+        );
       }
     } catch (e) {
       Get.back();
@@ -209,9 +211,6 @@ class OtpController extends GetxController {
       isLoading.value = false;
     }
   }
-
-
-
 
   final RxString email = ''.obs;
   final TextEditingController emailController = TextEditingController();

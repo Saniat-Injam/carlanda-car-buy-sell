@@ -2,10 +2,7 @@ import 'dart:developer';
 
 import 'package:carlanda_car_buy_sell/core/utils/logging/logger.dart';
 import 'package:carlanda_car_buy_sell/features/authentication/controllers/social_authentication_controller.dart';
-import 'package:carlanda_car_buy_sell/features/authentication/presentation/screens/change_pass_success_screen.dart';
-import 'package:carlanda_car_buy_sell/features/authentication/presentation/screens/otp_verification_screen.dart';
 import 'package:carlanda_car_buy_sell/features/landing/presentation/view/landing_screen.dart';
-import 'package:carlanda_car_buy_sell/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -38,41 +35,41 @@ class LoginController extends GetxController {
     errorMessage.value = '';
   }
 
-  final socialAuthenticationController = Get.put(() => SocialAuthenticationController());
+  final socialAuthenticationController = Get.put(
+    () => SocialAuthenticationController(),
+  );
 
-  void fetchSocialInfo() async{
+  void fetchSocialInfo() async {
+    try {
+      final authInfo = await socialAuthenticationController()
+          .signInWithGoogle();
 
-    try{
-      final authInfo = await socialAuthenticationController().signInWithGoogle();
-
-      if(authInfo != null){
+      if (authInfo != null) {
         socialLogin(email: authInfo.user!.email!);
       }
-    }catch(error){
+    } catch (error) {
       AppSnackBar.showError("Failed to login!");
       AppLoggerHelper.error(error.toString());
     }
   }
 
-  Future<void> socialLogin({required String email}) async{
-    try{
-      final requestBody = {
-        "email": email.toLowerCase(),
-        "fcmToken": ""
-      };
+  Future<void> socialLogin({required String email}) async {
+    try {
+      final requestBody = {"email": email.toLowerCase(), "fcmToken": ""};
 
       loadingProgressIndicator();
-      final response = await NetworkCaller().postRequest(AppUrls.socialLogin, body: requestBody);
+      final response = await NetworkCaller().postRequest(
+        AppUrls.socialLogin,
+        body: requestBody,
+      );
 
       if (response.isSuccess) {
-
         Get.back();
 
         final data = response.responseData;
 
         final String userId = data['data']['userId'].toString();
         final String accessToken = data['data']['accessToken'];
-
 
         await AuthService.saveId(userId);
         await AuthService.saveAccessToken(accessToken);
@@ -81,10 +78,10 @@ class LoginController extends GetxController {
         Get.offAllNamed(LandingScreen.routeName);
       } else {
         Get.back();
-        errorMessage.value = response.errorMessage ?? 'Login failed. Please try again.';
+        errorMessage.value =
+            response.errorMessage ?? 'Login failed. Please try again.';
       }
-
-    }catch(error){
+    } catch (error) {
       AppSnackBar.showError(error.toString());
     }
   }
@@ -126,14 +123,12 @@ class LoginController extends GetxController {
       );
 
       if (response.isSuccess) {
-
         Get.back();
 
         final data = response.responseData;
 
         final String userId = data['data']['userId'].toString();
         final String accessToken = data['data']['accessToken'];
-
 
         await AuthService.saveId(userId);
         await AuthService.saveAccessToken(accessToken);
@@ -142,7 +137,8 @@ class LoginController extends GetxController {
         Get.offAllNamed(LandingScreen.routeName);
       } else {
         Get.back();
-        errorMessage.value = response.errorMessage ?? 'Login failed. Please try again.';
+        errorMessage.value =
+            response.errorMessage ?? 'Login failed. Please try again.';
       }
     } catch (e) {
       Get.back();
@@ -150,9 +146,5 @@ class LoginController extends GetxController {
     } finally {
       isLoading.value = false;
     }
-
-
   }
-
-
 }

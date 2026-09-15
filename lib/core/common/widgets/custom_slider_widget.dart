@@ -92,7 +92,7 @@ class CustomRangeSliderState extends State<CustomRangeSlider> {
               overlayShape: SliderComponentShape.noOverlay,
               valueIndicatorShape: const PaddleSliderValueIndicatorShape(),
               valueIndicatorColor: widget.primaryColor,
-              showValueIndicator: ShowValueIndicator.always,
+              showValueIndicator: ShowValueIndicator.onDrag,
             ),
             child: RangeSlider(
               min: widget.min,

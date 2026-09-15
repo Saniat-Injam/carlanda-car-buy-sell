@@ -7,7 +7,6 @@ import '../../../core/common/widgets/app_snack_bar.dart';
 import '../../../core/common/widgets/loading_progress_indicator.dart';
 import '../../../core/services/auth_service.dart';
 import '../../../core/services/network_caller.dart';
-import '../../../core/utils/constants/app_colors.dart';
 import '../../../core/utils/constants/app_urls.dart';
 import '../../../core/utils/logging/logger.dart';
 import '../../../routes/app_routes.dart';
@@ -79,6 +78,7 @@ class ChangePasswordController extends GetxController {
 
     return !hasError;
   }
+
   Future<void> changePassword() async {
     String existingPass = existingPassController.text.trim();
     String newPass = newPassController.text.trim();
@@ -98,15 +98,13 @@ class ChangePasswordController extends GetxController {
 
       final token = AuthService.token;
       if (token == null || token.isEmpty) {
-        AppSnackBar.showError("You are not authenticated. Please log in again.");
+        AppSnackBar.showError(
+          "You are not authenticated. Please log in again.",
+        );
         return;
       }
 
-      final requestBody = {
-        "currentPass": existingPass,
-        "newPass": newPass,
-      };
-
+      final requestBody = {"currentPass": existingPass, "newPass": newPass};
 
       loadingProgressIndicator(title: "Updating password...");
 
@@ -126,7 +124,9 @@ class ChangePasswordController extends GetxController {
         // optionally navigate back to login
         Get.offAllNamed(AppRoute.loginScreen);
       } else {
-        AppSnackBar.showError(response.errorMessage ?? "Password change failed");
+        AppSnackBar.showError(
+          response.errorMessage ?? "Password change failed",
+        );
       }
     } catch (error) {
       Get.back();
@@ -136,7 +136,6 @@ class ChangePasswordController extends GetxController {
       isLoading.value = false;
     }
   }
-
 
   // Future<void> changePassword() async {
   //   String existingPass = existingPassController.text.trim();

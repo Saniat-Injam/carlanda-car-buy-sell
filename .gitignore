@@ -48,3 +48,6 @@ app.*.map.json
 .env
 android/app/google-services.json
 ios/Runner/GoogleService-Info.plist
+
+# Private files
+resume.md

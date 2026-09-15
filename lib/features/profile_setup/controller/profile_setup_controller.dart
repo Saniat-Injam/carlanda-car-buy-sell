@@ -14,7 +14,6 @@ import '../../../core/common/widgets/loading_progress_indicator.dart';
 import '../../../core/services/Auth_service.dart';
 import '../../../core/utils/constants/app_urls.dart';
 import '../../../core/utils/logging/logger.dart';
-import '../../landing/presentation/view/landing_screen.dart';
 
 class ProfileSetupController extends GetxController {
   final RxString selectedImage = "".obs;
@@ -106,7 +105,10 @@ class ProfileSetupController extends GetxController {
   Future<void> requestToUploadProfilePicture() async {
     try {
       loadingProgressIndicator(title: "Uploading...");
-      var request = http.MultipartRequest('PUT', Uri.parse(AppUrls.uploadProfilePicture));
+      var request = http.MultipartRequest(
+        'PUT',
+        Uri.parse(AppUrls.uploadProfilePicture),
+      );
 
       //request.fields['bodyData'] = jsonEncode(requestBody);
       await AuthService.init();
@@ -114,26 +116,24 @@ class ProfileSetupController extends GetxController {
       request.headers['Authorization'] = 'Bearer ${AuthService.token}';
       request.headers['Accept'] = 'application/json';
 
-      if(croppedImage.value.isNotEmpty){
-
+      if (croppedImage.value.isNotEmpty) {
         final mimeType = lookupMimeType(croppedImage.value) ?? "image/jpeg";
-        final splitMime =  mimeType.split('/');
+        final splitMime = mimeType.split('/');
 
         request.files.add(
-            await http.MultipartFile.fromPath(
-                "profileImage",
-                croppedImage.value,
-                contentType: MediaType(splitMime[0], splitMime[1])
-            )
+          await http.MultipartFile.fromPath(
+            "profileImage",
+            croppedImage.value,
+            contentType: MediaType(splitMime[0], splitMime[1]),
+          ),
         );
       }
       final response = await request.send();
-      if(response.statusCode == 200 || response.statusCode == 201){
+      if (response.statusCode == 200 || response.statusCode == 201) {
         Get.back();
         Get.offAndToNamed(LoginScreen.routeName);
         AppSnackBar.showSuccess("Profile picture updated successfully!!");
-      }
-      else{
+      } else {
         Get.back();
         AppSnackBar.showError("Failed to upload!!");
         log(response.statusCode.toString());

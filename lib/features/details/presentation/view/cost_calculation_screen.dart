@@ -144,7 +144,6 @@ import 'package:carlanda_car_buy_sell/core/common/widgets/custom_submit_button.d
 import 'package:carlanda_car_buy_sell/core/utils/constants/app_sizer.dart';
 import 'package:carlanda_car_buy_sell/core/utils/extensions/spacer.dart';
 import 'package:carlanda_car_buy_sell/features/details/controller/details_controller.dart';
-import 'package:carlanda_car_buy_sell/features/details/presentation/components/bank_details_section.dart';
 import 'package:carlanda_car_buy_sell/features/details/presentation/components/cost_details_section.dart';
 import 'package:carlanda_car_buy_sell/features/details/presentation/components/booking_success_dialog.dart';
 import 'package:flutter/material.dart';

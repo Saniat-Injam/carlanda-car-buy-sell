@@ -49,7 +49,6 @@
 import 'package:carlanda_car_buy_sell/core/common/widgets/custom_text.dart';
 import 'package:carlanda_car_buy_sell/core/utils/constants/app_sizer.dart';
 import 'package:carlanda_car_buy_sell/core/utils/constants/icon_path.dart';
-import 'package:carlanda_car_buy_sell/core/utils/constants/image_path.dart';
 import 'package:carlanda_car_buy_sell/core/utils/extensions/spacer.dart';
 import 'package:carlanda_car_buy_sell/core/utils/extensions/to_color.dart';
 import 'package:flutter/material.dart';
@@ -65,7 +64,6 @@ class BankDetailsSection extends StatelessWidget {
       children: [
         Container(
           // height: 400,
-
           padding: EdgeInsets.fromLTRB(28.w, 44.w, 16.w, 16.w),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(12),

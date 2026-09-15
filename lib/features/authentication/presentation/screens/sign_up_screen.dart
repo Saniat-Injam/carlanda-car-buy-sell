@@ -5,7 +5,6 @@ import 'package:carlanda_car_buy_sell/core/utils/constants/app_sizer.dart';
 import 'package:carlanda_car_buy_sell/core/utils/constants/icon_path.dart';
 import 'package:carlanda_car_buy_sell/features/authentication/controllers/sign_up_controller.dart';
 import 'package:carlanda_car_buy_sell/features/authentication/presentation/screens/login_screen.dart';
-import 'package:carlanda_car_buy_sell/features/authentication/presentation/widgets/social_signin_buttons.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -17,7 +16,7 @@ import '../../../../core/common/widgets/custom_text.dart';
 class SignUpScreen extends GetView<SignUpController> {
   const SignUpScreen({super.key});
   static const String routeName = "/sign-up";
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,86 +49,99 @@ class SignUpScreen extends GetView<SignUpController> {
                       fontWeight: FontWeight.normal,
                       fontSize: 16.sp,
                     ),
-                    Obx(() => CustomTextFormField(
-                      controller: controller.nameController,
-                      hintText: "Enter your full name",
-                      prefixIconPath: IconPath.person,
-                      hasError: controller.errorMessage.isNotEmpty,
-                      onChanged: (value) => controller.clearErrors(),
-                    )),
+                    Obx(
+                      () => CustomTextFormField(
+                        controller: controller.nameController,
+                        hintText: "Enter your full name",
+                        prefixIconPath: IconPath.person,
+                        hasError: controller.errorMessage.isNotEmpty,
+                        onChanged: (value) => controller.clearErrors(),
+                      ),
+                    ),
 
                     CustomText(
                       text: "Email",
                       fontWeight: FontWeight.normal,
                       fontSize: 16.sp,
                     ),
-                    Obx(() => CustomTextFormField(
-                      controller: controller.emailController,
-                      hintText: "Enter your email",
-                      prefixIconPath: IconPath.email,
-                      keyboardType: TextInputType.emailAddress,
-                      hasError: controller.errorMessage.isNotEmpty,
-                      onChanged: (value) => controller.clearErrors(),
-                    )),
+                    Obx(
+                      () => CustomTextFormField(
+                        controller: controller.emailController,
+                        hintText: "Enter your email",
+                        prefixIconPath: IconPath.email,
+                        keyboardType: TextInputType.emailAddress,
+                        hasError: controller.errorMessage.isNotEmpty,
+                        onChanged: (value) => controller.clearErrors(),
+                      ),
+                    ),
 
                     CustomText(
                       text: "Password",
                       fontWeight: FontWeight.normal,
                       fontSize: 16.sp,
                     ),
-                    Obx(() => CustomTextFormField(
-                      controller: controller.passwordController,
-                      hintText: "•••••••••",
-                      prefixIconPath: IconPath.password,
-                      obscureText: controller.obscureText.value,
-                      hasError: controller.errorMessage.isNotEmpty,
-                      onChanged: (value) => controller.clearErrors(),
-                      hintTextStyle: TextStyle(
-                        fontSize: 16.sp,
-                        color: Color(0xFFD9D9D9),
-                      ),
-                      suffixIcon: IconButton(
-                        onPressed: () => controller.toggleVisibility(),
-                        icon: Icon(
-                          controller.obscureText.value
-                              ? Icons.visibility_off
-                              : Icons.visibility,
+                    Obx(
+                      () => CustomTextFormField(
+                        controller: controller.passwordController,
+                        hintText: "•••••••••",
+                        prefixIconPath: IconPath.password,
+                        obscureText: controller.obscureText.value,
+                        hasError: controller.errorMessage.isNotEmpty,
+                        onChanged: (value) => controller.clearErrors(),
+                        hintTextStyle: TextStyle(
+                          fontSize: 16.sp,
+                          color: Color(0xFFD9D9D9),
+                        ),
+                        suffixIcon: IconButton(
+                          onPressed: () => controller.toggleVisibility(),
+                          icon: Icon(
+                            controller.obscureText.value
+                                ? Icons.visibility_off
+                                : Icons.visibility,
+                          ),
                         ),
                       ),
-                    )),
-
-                    Obx(() => controller.errorMessage.isNotEmpty 
-                      ? Column(
-                        children: [
-                          SizedBox(height: 16.h),
-                          Row(
-                            children: [
-                              Icon(Icons.error_outline, color: Color(0xFFF83737)),
-                              SizedBox(width: 8.w),
-                              Expanded(
-                                child: CustomText(
-                                  text: controller.errorMessage.value,
-                                  fontSize: 14.sp,
-                                  fontFamily: GoogleFonts.roboto().fontFamily,
-                                  fontWeight: FontWeight.w400,
-                                  color: Color(0xFFF83737),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      )
-                      : SizedBox.shrink()
                     ),
-                    
+
+                    Obx(
+                      () => controller.errorMessage.isNotEmpty
+                          ? Column(
+                              children: [
+                                SizedBox(height: 16.h),
+                                Row(
+                                  children: [
+                                    Icon(
+                                      Icons.error_outline,
+                                      color: Color(0xFFF83737),
+                                    ),
+                                    SizedBox(width: 8.w),
+                                    Expanded(
+                                      child: CustomText(
+                                        text: controller.errorMessage.value,
+                                        fontSize: 14.sp,
+                                        fontFamily:
+                                            GoogleFonts.roboto().fontFamily,
+                                        fontWeight: FontWeight.w400,
+                                        color: Color(0xFFF83737),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            )
+                          : SizedBox.shrink(),
+                    ),
+
                     SizedBox(height: 24.h),
-                    Obx(() => CustomSubmitButton(
-                      text: "Sign up",
-                      isLoading: controller.isLoading.value,
-                      onTap: () {
-                        controller.signUp();
-                      },
-                    )),
+                    Obx(
+                      () => CustomSubmitButton(
+                        text: "Sign up",
+                        isLoading: controller.isLoading.value,
+                        onTap: () {
+                          controller.signUp();
+                        },
+                      ),
+                    ),
 
                     SizedBox(height: 12.h),
                     _buildOrDivider(),
@@ -157,11 +169,10 @@ class SignUpScreen extends GetView<SignUpController> {
               TextSpan(text: "Already have an account?"),
               TextSpan(
                 text: " Sign In",
-                recognizer:
-                    TapGestureRecognizer()
-                      ..onTap = () {
-                        Get.toNamed(LoginScreen.routeName);
-                      },
+                recognizer: TapGestureRecognizer()
+                  ..onTap = () {
+                    Get.toNamed(LoginScreen.routeName);
+                  },
                 style: TextStyle(color: AppColors.primary),
               ),
             ],

@@ -3,10 +3,8 @@ import 'package:carlanda_car_buy_sell/core/common/widgets/custom_submit_button.d
 import 'package:carlanda_car_buy_sell/core/common/widgets/custom_text.dart';
 import 'package:carlanda_car_buy_sell/core/common/widgets/custom_textformfield.dart';
 import 'package:carlanda_car_buy_sell/core/utils/constants/app_sizer.dart';
-import 'package:carlanda_car_buy_sell/core/utils/constants/app_urls.dart';
 import 'package:carlanda_car_buy_sell/core/utils/constants/icon_path.dart';
 import 'package:carlanda_car_buy_sell/core/utils/extensions/spacer.dart';
-import 'package:carlanda_car_buy_sell/features/details/presentation/view/cost_calculation_screen.dart';
 import 'package:carlanda_car_buy_sell/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

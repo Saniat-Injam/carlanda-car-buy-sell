@@ -5,7 +5,6 @@ import 'package:carlanda_car_buy_sell/core/utils/constants/enums.dart';
 import 'package:carlanda_car_buy_sell/core/utils/extensions/spacer.dart';
 import 'package:carlanda_car_buy_sell/core/utils/extensions/to_color.dart';
 import 'package:carlanda_car_buy_sell/features/details/controller/details_controller.dart';
-import 'package:carlanda_car_buy_sell/features/details/presentation/view/cost_calculation_screen.dart';
 import 'package:carlanda_car_buy_sell/features/details/presentation/view/delivery_information_screen.dart';
 import 'package:carlanda_car_buy_sell/routes/app_routes.dart';
 import 'package:flutter/material.dart';

@@ -4,7 +4,6 @@ import 'package:carlanda_car_buy_sell/core/utils/constants/app_sizer.dart';
 import 'package:carlanda_car_buy_sell/core/utils/constants/image_path.dart';
 import 'package:carlanda_car_buy_sell/core/utils/extensions/spacer.dart';
 import 'package:carlanda_car_buy_sell/core/utils/extensions/to_color.dart';
-import 'package:carlanda_car_buy_sell/features/details/presentation/view/payment_screen.dart';
 import 'package:carlanda_car_buy_sell/features/profile/presentation/view/my_booking_car.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -31,7 +30,8 @@ class BookingSuccessDialog extends StatelessWidget {
             ),
             10.heightSpace(),
             CustomText(
-              text: "Your booking request has been sent. Once the admin accepts your request, you will be able to make the payment",
+              text:
+                  "Your booking request has been sent. Once the admin accepts your request, you will be able to make the payment",
               textAlign: TextAlign.center,
               fontWeight: FontWeight.normal,
               color: "#62666E".toColor(),

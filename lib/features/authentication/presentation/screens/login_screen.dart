@@ -7,7 +7,6 @@ import 'package:carlanda_car_buy_sell/core/utils/extensions/to_color.dart';
 import 'package:carlanda_car_buy_sell/features/authentication/controllers/login_controller.dart';
 import 'package:carlanda_car_buy_sell/features/authentication/presentation/screens/forget_password_screen.dart';
 import 'package:carlanda_car_buy_sell/features/authentication/presentation/screens/sign_up_screen.dart';
-import 'package:carlanda_car_buy_sell/features/authentication/presentation/widgets/social_signin_buttons.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -156,7 +155,7 @@ class LoginScreen extends GetView<LoginController> {
                       },
                       text: "Sign in with Google",
                       icon: Image.asset(IconPath.google, height: 20.h),
-                    )
+                    ),
                   ],
                 ),
               ],

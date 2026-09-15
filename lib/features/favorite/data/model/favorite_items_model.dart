@@ -28,17 +28,11 @@ class FavouriteItem {
   final String id;
   final Car car;
 
-  FavouriteItem({
-    required this.id,
-    required this.car,
-  });
+  FavouriteItem({required this.id, required this.car});
 
   // Factory constructor to parse the JSON data for each favourite item
   factory FavouriteItem.fromJson(Map<String, dynamic> json) {
-    return FavouriteItem(
-      id: json['id'],
-      car: Car.fromJson(json['car']),
-    );
+    return FavouriteItem(id: json['id'], car: Car.fromJson(json['car']));
   }
 }
 
@@ -78,12 +72,8 @@ class Car {
       price: json['price'].toDouble(),
       carImages: List<String>.from(json['carImages'] ?? []),
       mileage: json['mileage'],
-      discountPercent: json['discountPercent'] != null
-          ? json['discountPercent'].toDouble()
-          : null,
-      discountPrice: json['discountPrice'] != null
-          ? json['discountPrice'].toDouble()
-          : null,
+      discountPercent: json['discountPercent']?.toDouble(),
+      discountPrice: json['discountPrice']?.toDouble(),
     );
   }
 }

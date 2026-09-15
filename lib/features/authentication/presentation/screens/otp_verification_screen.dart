@@ -6,7 +6,6 @@ import 'package:carlanda_car_buy_sell/core/common/widgets/custom_text.dart';
 import 'package:carlanda_car_buy_sell/core/utils/constants/app_sizer.dart';
 import 'package:carlanda_car_buy_sell/core/utils/extensions/to_color.dart';
 import 'package:carlanda_car_buy_sell/features/authentication/controllers/otp_controller.dart';
-import 'package:carlanda_car_buy_sell/features/authentication/presentation/screens/reset_password_screen.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -358,14 +357,17 @@ class OtpVerificationScreen extends GetView<OtpController> {
             mainAxisSize: MainAxisSize.min,
             children: [
               Obx(
-                    () => CustomSubmitButton(
+                () => CustomSubmitButton(
                   text: "Verify",
                   isLoading: controller.isLoading.value,
                   onTap: () {
                     log("The value of is signup is: $isSignup");
-                    isSignup ?
-                    controller.verifyOtp(ChangePassSuccessScreen.routeName, isSignup) :
-                    controller.verifyLoginOtp();
+                    isSignup
+                        ? controller.verifyOtp(
+                            ChangePassSuccessScreen.routeName,
+                            isSignup,
+                          )
+                        : controller.verifyLoginOtp();
                   },
                 ),
               ),
@@ -384,9 +386,9 @@ class OtpVerificationScreen extends GetView<OtpController> {
                         text: "Resend code",
                         recognizer: isResendEnabled
                             ? (TapGestureRecognizer()
-                          ..onTap = () {
-                            controller.resendOtp();
-                          })
+                                ..onTap = () {
+                                  controller.resendOtp();
+                                })
                             : null,
                         style: TextStyle(
                           color: isResendEnabled
